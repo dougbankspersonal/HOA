@@ -1,0 +1,6 @@
+[submodule "SharedWebBoardgame"]
+	path = Html.TriangleExperiment/SharedWebBoardgame
+	url = https://github.com/dougbankspersonal/SharedWebBoardgame.git
+[submodule "Html.TriangleExperiment/SharedWebBoardgame"]
+	path = Html.TriangleExperiment/SharedWebBoardgame
+	url = https://github.com/dougbankspersonal/SharedWebBoardgame.git
