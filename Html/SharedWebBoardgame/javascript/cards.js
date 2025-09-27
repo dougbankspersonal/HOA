@@ -1,3 +1,5 @@
+// Hi Doug.  This is a Test.
+
 define([
   "dojo/string",
   "dojo/dom",
