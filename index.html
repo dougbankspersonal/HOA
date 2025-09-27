@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evil HOA Card Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1>🏠 Evil HOA Card Game 🏠</h1>
+            <p>Survive the tyrannical Homeowners Association!</p>
+        </header>
+
+        <div class="game-stats">
+            <div class="stat">
+                <span class="stat-label">Sanity:</span>
+                <span id="sanity">100</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Money:</span>
+                <span id="money">$5000</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">HOA Violations:</span>
+                <span id="violations">0</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div class="current-scenario">
+                <div class="scenario-card" id="scenario-card">
+                    <h3 id="scenario-title">Welcome to Suburbia!</h3>
+                    <p id="scenario-description">You've just moved into a lovely neighborhood governed by the most evil HOA in existence. Prepare yourself for bureaucratic nightmares!</p>
+                </div>
+            </div>
+
+            <div class="player-hand">
+                <h3>Your Response Cards</h3>
+                <div class="hand-cards" id="hand-cards">
+                    <!-- Cards will be dynamically added here -->
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button id="start-game" class="btn btn-primary">Start Game</button>
+                <button id="next-scenario" class="btn btn-secondary" style="display: none;">Next Scenario</button>
+                <button id="restart-game" class="btn btn-danger" style="display: none;">Restart Game</button>
+            </div>
+        </div>
+
+        <div class="game-log">
+            <h3>Game Log</h3>
+            <div id="log-content">
+                <p>Click "Start Game" to begin your HOA nightmare...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
