@@ -1,0 +1,51 @@
+.card.front.two-option {
+  border: 8px solid #000055;
+}
+.card.front.two-option .front-wrapper {
+  justify-content: space-around;
+}
+.card.front.two-option .front-wrapper .text-section {
+  font-family: Verdana, sans-serif;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  flex-direction: column;
+}
+.card.front.two-option .front-wrapper .text-section .text-subsection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card.front.two-option .front-wrapper .text-section.instance-0 {
+  color: #503;
+}
+.card.front.two-option .front-wrapper .text-section.instance-1 {
+  color: #305;
+}
+
+.card.back.two-option {
+  border: 8px solid #000055;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card.back.two-option .two-option-icon {
+  height: 60%;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../images/Cards/backs/two-option-icon.png");
+  font-weight: bold;
+}
+.card.back.two-option .title {
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #000055;
+}
+
+/*# sourceMappingURL=two_option_cards.css.map */

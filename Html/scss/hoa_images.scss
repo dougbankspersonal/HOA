@@ -1,0 +1,60 @@
+.hoa {
+
+  // Items
+  div.pseudo-image.mower {
+    background-image: url("../images/Cards/mower.png");
+  }
+
+  div.pseudo-image.hedge {
+    background-image: url("../images/Cards/hedge.png");
+  }
+
+  div.pseudo-image.flower {
+    background-image: url("../images/Cards/flower.png");
+  }
+
+  div.pseudo-image.playEquipment01 {
+    background-image: url("../images/Cards/playEquipment01.png");
+  }
+
+
+  div.pseudo-image.playEquipment02 {
+    background-image: url("../images/Cards/playEquipment02.png");
+  }
+
+  div.pseudo-image.playEquipment03 {
+    background-image: url("../images/Cards/playEquipment03.png");
+  }
+
+  div.pseudo-image.playEquipment04 {
+    background-image: url("../images/Cards/playEquipment04.png");
+  }
+
+  div.pseudo-image.symbol {
+    background-image: url("../images/Cards/symbol.png");
+    opacity: 0.5;
+    /* set transparency here */
+  }
+
+  // Pipes.
+  div.pseudo-image.pipe-full-left {
+    background-image: url("../images/Cards/pipe-full-left.png");
+  }
+
+  div.pseudo-image.pipe-half {
+    background-image: url("../images/Cards/pipe-half.png");
+  }
+
+  div.pseudo-image.pipe-full-right {
+    background-image: url("../images/Cards/pipe-full-right.png");
+  }
+
+  div.pseudo-image.corridor {
+    background-image: url("../images/Cards/corridor.png");
+  }
+
+  // Title stuff
+  div.pseudo-image.triangle-title {
+    background-image: url("../images/Cards/backs/triangle-title.png");
+  }
+}

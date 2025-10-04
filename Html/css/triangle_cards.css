@@ -64,18 +64,4 @@
   background-position: center;
 }
 
-.card.back.te.cgc {
-  background-image: url("../images/Cards/backs/card-back-background-cgc.png");
-}
-.card.back.te.cgc .te-icon {
-  background-image: url("../images/Cards/backs/card-back-icon-cgc.png");
-}
-
-.card.back.te.mh {
-  background-image: url("../images/Cards/backs/card-back-background-mh.png");
-}
-.card.back.te.mh .te-icon {
-  background-image: url("../images/Cards/backs/card-back-icon-mh.png");
-}
-
 /*# sourceMappingURL=triangle_cards.css.map */

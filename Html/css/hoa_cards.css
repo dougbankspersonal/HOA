@@ -1,0 +1,75 @@
+.card.front.triangle.hoa {
+  background-image: url("../images/Cards/triangle-tile-empty.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  font-family: "Luckiest Guy", cursive;
+}
+.card.front.triangle.hoa .card-index {
+  position: absolute;
+  font-size: 20px;
+  bottom: 5px;
+  left: 20px;
+  display: inline-block;
+  color: black;
+  z-index: 100;
+}
+.card.front.triangle.hoa .front-wrapper {
+  z-index: 0;
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.items {
+  z-index: 10;
+  transform-origin: 50% 50%;
+  height: 50%;
+  width: 50%;
+  position: absolute;
+  transform: translate(0%, 16.66%);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.pipes {
+  transform-origin: 50% 66%;
+  z-index: 5;
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-0.pipes {
+  rotate: 0deg;
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-1.pipes {
+  rotate: 120deg;
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-2.pipes {
+  rotate: 240deg;
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector.grass {
+  background-image: url("../images/Cards/grass.png");
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector.water {
+  background-image: url("../images/Cards/water.png");
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector.concrete {
+  background-image: url("../images/Cards/concrete.png");
+}
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector.building {
+  background-image: url("../images/Cards/building.png");
+}
+
+.card.back.hoa.triangle {
+  background-image: url("../images/Cards/backs/hoaBackBackground.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.card.back.hoa.triangle.start {
+  background-image: url("../images/Cards/backs/hoaBackBackgroundStart.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/*# sourceMappingURL=hoa_cards.css.map */
