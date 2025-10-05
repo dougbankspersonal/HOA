@@ -5,12 +5,17 @@
 // A deck config contains the following fields:
 //
 // classes: classes applied to every card.
-// cardTerrainDescriptors: list of structs:
-//   count: how many card configs use this terrainTypeBySectorIndex.
-//   terrainTypeBySectorIndex: array mapping sector index to terrain type.
 // itemAppearanceHistogramsByTerrainType: map from item type to a histogram if item types to relative frequency of item.
 //   sector: item of this type, or nothing.  Just for readable and simple code, looks like [Empty, Empty, Empty, ItemX, ItemX, ItemY]
 // waterPipeOdds: zero to 1.  Roll a random 0 to 1, if under amount a card has a pipe.
+//
+// To distribute terrain, either:
+// cardTerrainDescriptors: list of structs:
+//   count: how many card configs use this terrainTypeBySectorIndex.
+//   terrainTypeBySectorIndex: array mapping sector index to terrain type.
+// or
+// numCards: total number of cards to create.
+// terrainAppearanceHistogram: map from terrain type to relative frequency of appearance on cards.
 
 define([
   "sharedJavascript/debugLog",
@@ -25,7 +30,7 @@ define([
   //-------------------------------------------------
 
   function getDeckConfig() {
-    var gBasicHOADeckConfig = {
+    var gScriptedHOADeckConfig = {
       classes: ["hoa"],
       waterPipeOdds: 0.7,
       itemAppearanceHistogramsByTerrainType: {
@@ -61,7 +66,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 8,
+          count: 16,
         },
         {
           terrainTypeBySectorIndex: [
@@ -70,7 +75,7 @@ define([
             hoaCardConstants.terrainTypes.Concrete,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 3,
+          count: 6,
         },
         {
           terrainTypeBySectorIndex: [
@@ -79,7 +84,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Water,
           ],
-          count: 3,
+          count: 6,
         },
         {
           terrainTypeBySectorIndex: [
@@ -88,7 +93,7 @@ define([
             hoaCardConstants.terrainTypes.Water,
             hoaCardConstants.terrainTypes.Water,
           ],
-          count: 3,
+          count: 6,
         },
         {
           terrainTypeBySectorIndex: [
@@ -97,7 +102,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 3,
+          count: 6,
         },
         {
           terrainTypeBySectorIndex: [
@@ -106,7 +111,7 @@ define([
             hoaCardConstants.terrainTypes.Building,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 3,
+          count: 6,
         },
         {
           terrainTypeBySectorIndex: [
@@ -115,7 +120,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 3,
+          count: 6,
         },
         {
           terrainTypeBySectorIndex: [
@@ -124,7 +129,7 @@ define([
             hoaCardConstants.terrainTypes.Water,
             hoaCardConstants.terrainTypes.Concrete,
           ],
-          count: 3,
+          count: 6,
         },
         {
           terrainTypeBySectorIndex: [
@@ -133,12 +138,49 @@ define([
             hoaCardConstants.terrainTypes.Concrete,
             hoaCardConstants.terrainTypes.Concrete,
           ],
-          count: 3,
+          count: 6,
         },
       ],
     };
 
-    return gBasicHOADeckConfig;
+    var gScriptedHOADeckConfig = {
+      classes: ["hoa"],
+      waterPipeOdds: 0.7,
+      itemAppearanceHistogramsByTerrainType: {
+        [hoaCardConstants.terrainTypes.Building]:
+          hoaCardConstants.otherTerrainItemApperanceHistogram,
+        [hoaCardConstants.terrainTypes.Concrete]:
+          hoaCardConstants.otherTerrainItemApperanceHistogram,
+        [hoaCardConstants.terrainTypes.Water]:
+          hoaCardConstants.otherTerrainItemApperanceHistogram,
+        [hoaCardConstants.terrainTypes.Grass]:
+          hoaCardConstants.grassTerrainItemApperanceHistogram,
+      },
+
+      startTilesTerrainTypeBySectorIndices: [
+        [
+          hoaCardConstants.terrainTypes.Building,
+          hoaCardConstants.terrainTypes.Building,
+          hoaCardConstants.terrainTypes.Building,
+          hoaCardConstants.terrainTypes.Grass,
+        ],
+        [
+          hoaCardConstants.terrainTypes.Building,
+          hoaCardConstants.terrainTypes.Building,
+          hoaCardConstants.terrainTypes.Building,
+          hoaCardConstants.terrainTypes.Concrete,
+        ],
+      ],
+      numCards: 70,
+      terrainAppearanceHistogram: {
+        [hoaCardConstants.terrainTypes.Building]: 1,
+        [hoaCardConstants.terrainTypes.Concrete]: 1,
+        [hoaCardConstants.terrainTypes.Water]: 2,
+        [hoaCardConstants.terrainTypes.Grass]: 4,
+      },
+    };
+
+    return gScriptedHOADeckConfig;
   }
 
   // This returned object becomes the defined value of this module

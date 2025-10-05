@@ -138,9 +138,11 @@ define([
 
     triangleSides: gTriangleSides,
     pipeOptions: gPipeOptions,
+
     pipeUnpreferredTurnMultiplier: gPipeUnpreferredTurnMultiplier,
     pipePreferredTurnMultiplier: gPipePreferredTurnMultiplier,
     pipeEndMultiplier: gPipeEndMultiplier,
+
     getRandomZeroToOne: getRandomZeroToOne,
   };
 });

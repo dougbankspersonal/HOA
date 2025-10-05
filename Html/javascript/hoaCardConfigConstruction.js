@@ -73,45 +73,42 @@ define([
     return true;
   }
 
-  function getPipeContinuationClassOptions(
+  function getPipeContinuationClassHistogram(
     sectorDescriptor,
     sectorIndex,
     entryTriangleSide
   ) {
     // A pipe has entered the given sector on the given side.  What are the possible ways it could continue?
-    var retVal = [];
+    var retVal = {};
 
     // if the pipe can handle ending here, add that option.
     if (canHaveHalfPipes(sectorDescriptor)) {
-      for (var i = 0; i < hoaCardConstants.pipeEndMultiplier; i++)
-        retVal.push(hoaCardConstants.pipeOptions.PipeHalf);
+      retVal[hoaCardConstants.pipeOptions.PipeHalf] =
+        hoaCardConstants.pipeEndMultiplier;
     }
 
     // If we are in sector 0, we want to prefer the turn that gets us down into sector 2.
     if (sectorIndex == 0) {
-      var turnInto2 =
+      var preferredTurn =
         entryTriangleSide == hoaCardConstants.triangleSides.Left
           ? hoaCardConstants.pipeOptions.PipeFullRight
           : hoaCardConstants.pipeOptions.PipeFullLeft;
-      var turnOut =
+      var unpreferredTurn =
         entryTriangleSide == hoaCardConstants.triangleSides.Left
           ? hoaCardConstants.pipeOptions.PipeFullLeft
           : hoaCardConstants.pipeOptions.PipeFullRight;
 
-      for (var i = 0; i < hoaCardConstants.preferredTurnMultiplier; i++) {
-        retVal.push(turnInto2);
-      }
-      for (var i = 0; i < hoaCardConstants.unpreferredTurnMultiplier; i++) {
-        retVal.push(turnOut);
-      }
+      retVal[preferredTurn] = hoaCardConstants.pipePreferredTurnMultiplier;
+      retVal[unpreferredTurn] = hoaCardConstants.pipeUnpreferredTurnMultiplier;
     } else {
       // Equal chances right and left.
       // Prefer this a bit over ending.
-      for (var i = 0; i < hoaCardConstants.preferredTurnMultiplier; i++) {
-        retVal.push(hoaCardConstants.pipeOptions.PipeFullRight);
-        retVal.push(hoaCardConstants.pipeOptions.PipeFullLeft);
-      }
+      retVal[hoaCardConstants.pipeOptions.PipeFullRight] =
+        hoaCardConstants.pipePreferredTurnMultiplier;
+      retVal[hoaCardConstants.pipeOptions.PipeFullLeft] =
+        hoaCardConstants.pipePreferredTurnMultiplier;
     }
+
     return retVal;
   }
 
@@ -145,6 +142,7 @@ define([
         return 3;
       }
     }
+
     // Anything else: no next sector.
     return null;
   }
@@ -170,20 +168,20 @@ define([
 
     // How will we advance the pipe in this sector?
     // Get the options.
-    var pipeContinuationClasssOptions = getPipeContinuationClassOptions(
+    var pipeContinuationClassHistogram = getPipeContinuationClassHistogram(
       sectorDescriptor,
       sectorIndex,
       entryTriangleSide
     );
     debugLog(
       "tryAddPipeRecursive",
-      "pipeContinuationClasssOptions = " +
-        JSON.stringify(pipeContinuationClasssOptions)
+      "pipeContinuationClassHistogram = " +
+        JSON.stringify(pipeContinuationClassHistogram)
     );
 
     // Find the continuation option.
-    var pipeClass = genericUtils.getRandomArrayElement(
-      pipeContinuationClasssOptions,
+    var pipeClass = genericUtils.getRandomKeyFromHistogram(
+      pipeContinuationClassHistogram,
       hoaCardConstants.getRandomZeroToOne
     );
 
@@ -291,63 +289,38 @@ define([
     }
   }
 
-  function generateCardConfigs(deckConfig) {
-    debugLog(
-      "generateCardConfigs",
-      "called generateCardConfigs with deckConfig = ",
-      JSON.stringify(deckConfig)
+  function createCardConfig(terrainTypeBySectorIndex, classes, opt_cardIndex) {
+    var cardConfig = {};
+    console.assert(
+      terrainTypeBySectorIndex.length ==
+        triangleCardConstants.numSectorsPerCard,
+      "wrong number of sectors in terrainTypeBySectorIndex"
     );
 
-    // Only call once.
-    console.assert(gCardConfigs === null, "generateCardConfigs called twice");
-
-    gCardConfigs = [];
-
-    // First the start tiles.
-    debugLog(
-      "generateCardConfigs",
-      "deckConfig.startTilesTerrainTypeBySectorIndices = ",
-      JSON.stringify(deckConfig.startTilesTerrainTypeBySectorIndices)
-    );
-
-    for (
-      var playerIndex = 0;
-      playerIndex < hoaCardConstants.numPlayers;
-      playerIndex++
-    ) {
-      debugLog(
-        "generateCardConfigs",
-        "playerIndex = " + playerIndex,
-        JSON.stringify(deckConfig.startTilesTerrainTypeBySectorIndices)
-      );
-      for (
-        var cardIndex = 0;
-        cardIndex < deckConfig.startTilesTerrainTypeBySectorIndices.length;
-        cardIndex++
-      ) {
-        debugLog(
-          "generateCardConfigs",
-          "  cardIndex = " + cardIndex,
-          JSON.stringify(deckConfig.startTilesTerrainTypeBySectorIndices)
-        );
-        var terrainTypeBySectorIndex =
-          deckConfig.startTilesTerrainTypeBySectorIndices[cardIndex];
-        var cardConfig = {};
-        cardConfig.sectorDescriptors =
-          generateSectorDescriptorsForTerrainsBySector(
-            terrainTypeBySectorIndex
-          );
-        gCardConfigs.push(cardConfig);
-        cardConfig.classes = ["start"].concat(deckConfig.classes);
-      }
+    if (opt_cardIndex !== null) {
+      cardConfig.cardIndex = opt_cardIndex;
     }
+    cardConfig.classes = classes;
 
+    cardConfig.sectorDescriptors = generateSectorDescriptorsForTerrainsBySector(
+      terrainTypeBySectorIndex
+    );
+
+    console.assert(
+      cardConfig.sectorDescriptors.length ==
+        triangleCardConstants.numSectorsPerCard,
+      "wrong number of sectors in cardConfig"
+    );
+
+    return cardConfig;
+  }
+
+  function addCardConfigsForCardTerrainDescriptors(deckConfig) {
     debugLog(
       "generateCardConfigs",
       "deckConfig.cardTerrainDescriptors = ",
       JSON.stringify(deckConfig.cardTerrainDescriptors)
     );
-
     var totalCardIndex = 0;
     for (
       var cardTerrainDescriptorIndex = 0;
@@ -361,26 +334,135 @@ define([
         cardIndex < cardTerrainDescriptor.count;
         cardIndex++
       ) {
-        var cardConfig = {};
         totalCardIndex++;
-        cardConfig.cardIndex = totalCardIndex;
-
-        cardConfig.sectorDescriptors =
-          generateSectorDescriptorsForTerrainsBySector(
-            cardTerrainDescriptor.terrainTypeBySectorIndex
-          );
-        cardConfig.classes = deckConfig.classes;
-        // Decorate the sector configs with items.
-        addItemsToCardConfig(
-          cardConfig,
-          deckConfig.itemAppearanceHistogramsByTerrainType
+        var cardConfig = createCardConfig(
+          cardTerrainDescriptor.terrainTypeBySectorIndex,
+          deckConfig.classes,
+          totalCardIndex
         );
-        // Decorate the card with water pipes.
-        maybeAddPipesToCardConfig(cardConfig, deckConfig.waterPipeOdds);
-
         gCardConfigs.push(cardConfig);
       }
     }
+  }
+
+  function addCardConfigsForTerrainAppearanceHistogram(deckConfig) {
+    console.assert(deckConfig.numCards, "no numCards in deckConfig");
+    console.assert(
+      deckConfig.terrainAppearanceHistogram,
+      "no terrainAppearanceHistogram in deckConfig"
+    );
+
+    for (
+      var totalCardIndex = 0;
+      totalCardIndex < deckConfig.numCards;
+      totalCardIndex++
+    ) {
+      var terrainTypeBySectorIndex = [];
+      for (
+        var sectorIndex = 0;
+        sectorIndex < triangleCardConstants.numSectorsPerCard;
+        sectorIndex++
+      ) {
+        var terrainType = genericUtils.getRandomKeyFromHistogram(
+          deckConfig.terrainAppearanceHistogram,
+          hoaCardConstants.getRandomZeroToOne
+        );
+        terrainTypeBySectorIndex.push(terrainType);
+      }
+
+      var cardConfig = createCardConfig(
+        terrainTypeBySectorIndex,
+        deckConfig.classes,
+        totalCardIndex + 1
+      );
+      gCardConfigs.push(cardConfig);
+    }
+  }
+
+  function decorateCardConfigs(deckConfig) {
+    for (
+      var cardConfigIndex = 0;
+      cardConfigIndex < gCardConfigs.length;
+      cardConfigIndex++
+    ) {
+      var cardConfig = gCardConfigs[cardConfigIndex];
+
+      // Decorate the sector configs with items.
+      addItemsToCardConfig(
+        cardConfig,
+        deckConfig.itemAppearanceHistogramsByTerrainType
+      );
+      // Decorate the card with water pipes.
+      maybeAddPipesToCardConfig(cardConfig, deckConfig.waterPipeOdds);
+
+      // Is this all like in-place?
+    }
+  }
+
+  function addStartCardConfigs(deckConfig) {
+    // First the start tiles.
+    debugLog(
+      "addStartCardConfigs",
+      "deckConfig.startTilesTerrainTypeBySectorIndices = ",
+      JSON.stringify(deckConfig.startTilesTerrainTypeBySectorIndices)
+    );
+
+    for (
+      var playerIndex = 0;
+      playerIndex < hoaCardConstants.numPlayers;
+      playerIndex++
+    ) {
+      debugLog(
+        "addStartCardConfigs",
+        "playerIndex = " + playerIndex,
+        JSON.stringify(deckConfig.startTilesTerrainTypeBySectorIndices)
+      );
+      for (
+        var cardIndex = 0;
+        cardIndex < deckConfig.startTilesTerrainTypeBySectorIndices.length;
+        cardIndex++
+      ) {
+        var terrainTypeBySectorIndex =
+          deckConfig.startTilesTerrainTypeBySectorIndices[cardIndex];
+        var cardConfig = createCardConfig(
+          terrainTypeBySectorIndex,
+          deckConfig.classes,
+          null
+        );
+        cardConfig.classes = ["start"].concat(deckConfig.classes);
+        gCardConfigs.push(cardConfig);
+      }
+    }
+  }
+
+  function generateCardConfigs(deckConfig) {
+    debugLog(
+      "generateCardConfigs",
+      "called generateCardConfigs with deckConfig = ",
+      JSON.stringify(deckConfig)
+    );
+
+    // Only call once.
+    console.assert(gCardConfigs === null, "generateCardConfigs called twice");
+
+    gCardConfigs = [];
+
+    if (deckConfig.cardTerrainDescriptors) {
+      addCardConfigsForCardTerrainDescriptors(deckConfig);
+    } else {
+      addCardConfigsForTerrainAppearanceHistogram(deckConfig);
+    }
+
+    decorateCardConfigs(deckConfig);
+
+    // AFTER decorating, add the start cards.
+    addStartCardConfigs(deckConfig);
+
+    debugLog(
+      "generateCardConfigs",
+      "gCardConfigs = ",
+      JSON.stringify(gCardConfigs)
+    );
 
     return gCardConfigs;
   }
