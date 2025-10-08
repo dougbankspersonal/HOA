@@ -20,7 +20,9 @@ define([
 ], function (debugLogModule, genericUtils) {
   var debugLog = debugLogModule.debugLog;
 
-  const gNumPlayers = 5;
+  // No idea how many players this actually supports.
+  // But TTS wants at least 12 cards in any card set, 2 cards per player: just say 6.
+  const gNumPlayers = 6;
 
   const gTerrainTypeBuilding = "building";
   const gTerrainTypeGrass = "grass";

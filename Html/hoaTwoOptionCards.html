@@ -74,11 +74,16 @@
         debugLog("hoaTwoOptionCards", "numCards = " + numCards);
 
         var backConfig = {
-          callback: twoOptionCards.addCardBack,
           classes: ["two-option", "hoa"],
         };
 
-        cards.addCards(numCards, twoOptionCards.addCardFront, backConfig);
+        cards.addCards(
+          numCards,
+          function (parent, index) {
+            return twoOptionCards.addCardFront(parent, index, ["hoa"]);
+          },
+          backConfig
+        );
       });
     </script>
   </body>

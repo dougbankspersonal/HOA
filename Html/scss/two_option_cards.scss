@@ -4,54 +4,26 @@
   .front-wrapper {
     justify-content: space-around;
 
-    .text-section {
-      font-family: Verdana, sans-serif;
+    .title {
       width: auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+    }
 
+    .option {
+      display: flex;
       flex-direction: column;
-
-      .text-subsection {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-
-    .text-section.instance-0 {
-      color: #503;
-    }
-
-    .text-section.instance-1 {
-      color: #305;
+      align-items: center;
+      justify-content: center;
     }
   }
 }
 
 .card.back.two-option {
-  border: 8px solid #000055;
   display: flex;
   position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  .two-option-icon {
-    height: 60%;
-    width: 100%;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url("../images/Cards/backs/two-option-icon.png");
-    font-weight: bold;
-  }
-
-  .title {
-    font-size: 1.7em;
-    font-weight: bold;
-    color: #000055
-  }
 }

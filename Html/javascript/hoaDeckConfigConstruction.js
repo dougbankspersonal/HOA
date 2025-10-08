@@ -66,7 +66,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 16,
+          count: 17,
         },
         {
           terrainTypeBySectorIndex: [
@@ -75,7 +75,7 @@ define([
             hoaCardConstants.terrainTypes.Concrete,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 6,
+          count: 7,
         },
         {
           terrainTypeBySectorIndex: [
@@ -84,7 +84,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Water,
           ],
-          count: 6,
+          count: 7,
         },
         {
           terrainTypeBySectorIndex: [
@@ -93,7 +93,7 @@ define([
             hoaCardConstants.terrainTypes.Water,
             hoaCardConstants.terrainTypes.Water,
           ],
-          count: 6,
+          count: 7,
         },
         {
           terrainTypeBySectorIndex: [
@@ -102,7 +102,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 6,
+          count: 7,
         },
         {
           terrainTypeBySectorIndex: [
@@ -111,7 +111,7 @@ define([
             hoaCardConstants.terrainTypes.Building,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 6,
+          count: 5,
         },
         {
           terrainTypeBySectorIndex: [
@@ -120,7 +120,7 @@ define([
             hoaCardConstants.terrainTypes.Grass,
             hoaCardConstants.terrainTypes.Grass,
           ],
-          count: 6,
+          count: 5,
         },
         {
           terrainTypeBySectorIndex: [
@@ -129,7 +129,7 @@ define([
             hoaCardConstants.terrainTypes.Water,
             hoaCardConstants.terrainTypes.Concrete,
           ],
-          count: 6,
+          count: 5,
         },
         {
           terrainTypeBySectorIndex: [
@@ -138,12 +138,21 @@ define([
             hoaCardConstants.terrainTypes.Concrete,
             hoaCardConstants.terrainTypes.Concrete,
           ],
-          count: 6,
+          count: 5,
+        },
+        {
+          terrainTypeBySectorIndex: [
+            hoaCardConstants.terrainTypes.Grass,
+            hoaCardConstants.terrainTypes.Water,
+            hoaCardConstants.terrainTypes.Concrete,
+            hoaCardConstants.terrainTypes.Building,
+          ],
+          count: 5,
         },
       ],
     };
 
-    var gScriptedHOADeckConfig = {
+    var gRandomHOADeckConfig = {
       classes: ["hoa"],
       waterPipeOdds: 0.7,
       itemAppearanceHistogramsByTerrainType: {
@@ -180,7 +189,7 @@ define([
       },
     };
 
-    return gScriptedHOADeckConfig;
+    return gRandomHOADeckConfig;
   }
 
   // This returned object becomes the defined value of this module

@@ -28,42 +28,40 @@ define([
   // Functions
   //
   //-----------------------------------
-  function addTextSection(parentNode, cardConfig, textSection, index) {
-    debugLog("addTextSection", "textSection = ", JSON.stringify(textSection));
-    var indexClass = "instance-" + index;
-    var textSectionNode = htmlUtils.addDiv(
-      parentNode,
-      ["text-section", indexClass],
-      "text-section-" + index
-    );
+  function addOptionNode(parentNode, option) {
+    var optionNode = htmlUtils.addDiv(parentNode, ["option"], "option");
 
-    for (var j = 0; j < textSection.subsections.length; j++) {
-      var subsection = textSection.subsections[j];
-      var subsectionClass = "instance-" + j;
-      var subsectionNode = htmlUtils.addDiv(
-        textSectionNode,
-        ["text-subsection", subsectionClass],
-        "text-subsection-" + j,
-        subsection
+    if (option.subtitle) {
+      var subtitleNode = htmlUtils.addDiv(
+        optionNode,
+        ["subtitle"],
+        "subtitle",
+        option.subtitle
       );
-      if (cardConfig.customFontSize) {
-        domStyle.set(subsectionNode, {
-          "font-size": cardConfig.customFontSize,
-        });
-      }
+    }
+    if (option.text) {
+      var textNode = htmlUtils.addDiv(
+        optionNode,
+        ["text"],
+        "text",
+        option.text
+      );
     }
 
-    return textSectionNode;
+    return optionNode;
   }
 
-  function addCardFront(parentNode, index) {
+  function addCardFront(parentNode, index, classes) {
     debugLog("addCardFront", "index = ", JSON.stringify(index));
     var cardConfig = cards.getCardConfigAtIndex(gCardConfigs, index);
     debugLog("addCardFront", "cardConfig = ", JSON.stringify(cardConfig));
 
+    var finalClasses = classes ? classes.slice() : [];
+    finalClasses.push("two-option");
+
     var cardFrontNode = cards.addCardFront(
       parentNode,
-      ["two-option"],
+      finalClasses,
       "two-option-" + index
     );
 
@@ -74,27 +72,32 @@ define([
     );
 
     domClass.add(cardFrontNode);
-    for (var i = 0; i < cardConfig.textSections.length; i++) {
-      var textSection = cardConfig.textSections[i];
-      debugLog("addCardFront", "textSection = ", JSON.stringify(textSection));
-      var textSectionNode = addTextSection(
+
+    if (cardConfig.title) {
+      var titleNode = htmlUtils.addDiv(
         frontWrapperNode,
-        cardConfig,
-        textSection,
-        i
+        ["title"],
+        "title",
+        cardConfig.title
       );
+    }
+
+    var options = cardConfig.options || [];
+    for (var i = 0; i < options.length; i++) {
+      addOptionNode(frontWrapperNode, options[i]);
     }
 
     return cardFrontNode;
   }
 
-  function addCardBack(parent, index) {
+  function addCardBack(parent, index, classes) {
     var cardConfig = cards.getCardConfigAtIndex(gCardConfigs, index);
 
-    var classes = ["two-option"];
+    var finalClasses = classes ? classes.slice() : [];
+    finalClasses.push("two-option");
 
     var cardBackNode = cards.addCardBack(parent, index, {
-      classes: classes,
+      classes: finalClasses,
     });
 
     var cardBackIconNode = htmlUtils.addImage(

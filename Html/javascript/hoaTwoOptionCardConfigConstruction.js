@@ -13,82 +13,80 @@ define([
 
   const gTwoOptionCardConfigs = [
     {
-      textSections: [
+      title: "Children's Safety",
+      options: [
         {
-          subsections: [
-            '"A grove of statues brings a daring Grecian air to any well-tended garden."',
-            "+1 point for each shared border between two statue sectors.",
-          ],
+          subtitle: "A: Protect their bodies!",
+          text: "A mower adjacent to any Play Equipment: +1 infraction.",
         },
         {
-          subsections: [
-            '"Statues in a cluster are the height of shameless ostentation."',
-            "-1 point for each shared border between two statue sectors.",
-          ],
+          subtitle: "B: Protect their minds!",
+          text: "A player has more Play Equipment than either his left or right neighbor: +2 infractions.",
         },
       ],
     },
     {
-      textSections: [
+      title: "Sprinkler Management",
+      options: [
         {
-          subsections: [
-            '"Sunflowers by a park space brighten any picnic."',
-            "+1 point for each scoring sunflower adjacent to a green.",
-          ],
+          subtitle: "A: Sprinklers are Ugly!",
+          text: "Each sprinkler with no Item on its sector: +1 infraction.",
         },
         {
-          subsections: [
-            '"Park access to sunflowers encourages loutish behavior."',
-            "+1 point for each scoring sunflower adjacent to a green.",
-          ],
+          subtitle: "B: Sprinkler Efficiency!",
+          text: "Each sprinkler adjacent to non-Grass terrain: +1 infraction.",
         },
       ],
     },
     {
-      textSections: [
+      title: "Pool Rules",
+      options: [
         {
-          subsections: [
-            '"The thoughtful gardener has walkways by her marigolds."',
-            "+2 points for each scoring marigold with a scoring path through it.",
-          ],
+          subtitle: "A: Insurance!",
+          text: "Each Water sector adjacent to the edge of the tableau: +1 infraction.",
         },
         {
-          subsections: [
-            '"Paths through your marigolds can only lead to tears."',
-            "-1 point for each scoring marigold with a scoring path through it.",
-          ],
+          subtitle: "B: Shapely Pools!",
+          text: "Each concave Water Installment: +1 infraction.",
         },
       ],
     },
     {
-      textSections: [
+      title: "Pool Rules",
+      options: [
         {
-          subsections: [
-            '"A roses and iris pairs offer an elegant accent."',
-            "Non-scoring rose next to non-scoring iris: no penalty for either sector, +3 points.",
-          ],
+          subtitle: "A: Fire Code!",
+          text: "2 Building installments touch at a corner: +1 infraction.",
         },
         {
-          subsections: [
-            '"Well-mannered gardeners would not waste a single rose or iris."',
-            "Double penalty for non-scoring roses and irises.",
-          ],
+          subtitle: "B: Beautification!",
+          text: "Each Building installment without at least 3 adjacent flowers or hedges: +1 infraction.",
         },
       ],
     },
     {
-      textSections: [
+      title: "Lawn Care",
+      options: [
         {
-          subsections: [
-            '"Paths into the wilderness invite dauntless exploration."',
-            "Double points for scoring paths with at least one end going off the edge of the tableau.",
-          ],
+          subtitle: "A: Put your Mowers Away!",
+          text: "Each Grass sector with more than one Mower: +2 infractions.",
         },
         {
-          subsections: [
-            '"Paths into the wilderness risk our babies being snatched by wolves."',
-            "Double points for scoring paths with terminals on both ends.",
-          ],
+          subtitle: "B: Hoarders!",
+          text: "Play Equipment on more than one Grass Installment: +2 infractions.",
+        },
+      ],
+    },
+    {
+      title: "Neighborhood Watch",
+      options: [
+        {
+          subtitle: "A: Beware Peeping Toms!",
+          text: "Any Building sector adjacent to the edge of the tableau: +1 infraction.",
+        },
+        {
+          subtitle: "B: Beware Occult Weirdos!",
+          text: "The player(s) with the most Illuminati symbols: +3 infractions.",
         },
       ],
     },

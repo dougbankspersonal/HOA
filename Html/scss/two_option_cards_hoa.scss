@@ -1,7 +1,73 @@
-.card.back.two-option.hoa {
-  background-image: url("../images/Cards/backs/two=option-hoa.png");
+.card.two-option.hoa {
+  font-family: Special Elite, monospace;
 }
 
-.card.back.two-option.hoa .triangle-icon {
-  background-image: url("../images/Cards/backs/two-option-icon-hoa.png");
+.card.back.two-option.hoa {
+  background-image: url("../images/Cards/backs/two-option-hoa-back.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 8px solid #003300;
+}
+
+.card.front.two-option.hoa {
+  border: 8px solid #003300;
+
+  .front-wrapper {
+
+    .title {
+      padding: 20px 20px 0px 20px;
+      font-weight: bold;
+      font-size: 18;
+      font-style: underline;
+      text-decoration: underline;
+    }
+
+    .option {
+      .subtitle {
+        padding: 15px 15px 0px 15px;
+        font-weight: bold;
+        font-size: 16;
+      }
+
+      .text {
+        padding: 15px 15px 0px 15px;
+        font-size: 14;
+        text-align: left;
+      }
+    }
+  }
+
+  .text-section.instance-0 {
+    color: #503;
+  }
+
+  .text-section.instance-1 {
+    color: #305;
+  }
+}
+
+.card.back.two-option {
+  border: 8px solid #000055;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .two-option-icon {
+    height: 60%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../images/Cards/backs/two-option-icon.png");
+    font-weight: bold;
+  }
+
+  .title {
+    font-size: 1.7em;
+    font-weight: bold;
+    color: #000055
+  }
 }

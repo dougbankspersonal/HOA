@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   background-position: center;
   position: relative;
-  font-family: "Luckiest Guy", cursive;
+  font-family: Special Elite, monospace;
 }
 .card.front.triangle.hoa .card-index {
   position: absolute;
@@ -23,7 +23,11 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.items {
+.card.front.triangle.hoa
+  .front-wrapper
+  .sectors-row
+  .sector
+  .pseudo-image.sector-overlay.items {
   z-index: 10;
   transform-origin: 50% 50%;
   height: 50%;
@@ -32,17 +36,33 @@
   transform: translate(0%, 16.66%);
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
 }
-.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.pipes {
+.card.front.triangle.hoa
+  .front-wrapper
+  .sectors-row
+  .sector
+  .pseudo-image.sector-overlay.pipes {
   transform-origin: 50% 66%;
   z-index: 5;
 }
-.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-0.pipes {
+.card.front.triangle.hoa
+  .front-wrapper
+  .sectors-row
+  .sector
+  .pseudo-image.sector-overlay.orientation-0.pipes {
   rotate: 0deg;
 }
-.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-1.pipes {
+.card.front.triangle.hoa
+  .front-wrapper
+  .sectors-row
+  .sector
+  .pseudo-image.sector-overlay.orientation-1.pipes {
   rotate: 120deg;
 }
-.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-2.pipes {
+.card.front.triangle.hoa
+  .front-wrapper
+  .sectors-row
+  .sector
+  .pseudo-image.sector-overlay.orientation-2.pipes {
   rotate: 240deg;
 }
 .card.front.triangle.hoa .front-wrapper .sectors-row .sector.grass {
