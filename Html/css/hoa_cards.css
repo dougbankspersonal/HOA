@@ -1,5 +1,4 @@
 .card.front.triangle.hoa {
-  background-image: url("../images/Cards/triangle-tile-empty.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -9,11 +8,20 @@
 .card.front.triangle.hoa .card-index {
   position: absolute;
   font-size: 20px;
-  bottom: 5px;
   left: 20px;
   display: inline-block;
   color: black;
-  z-index: 100;
+  z-index: 30;
+}
+.card.front.triangle.hoa .hoa-overlay.overlay {
+  background-image: url("../images/Cards/triangle-frame.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
 }
 .card.front.triangle.hoa .front-wrapper {
   z-index: 0;
@@ -23,11 +31,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-.card.front.triangle.hoa
-  .front-wrapper
-  .sectors-row
-  .sector
-  .pseudo-image.sector-overlay.items {
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.items {
   z-index: 10;
   transform-origin: 50% 50%;
   height: 50%;
@@ -36,33 +40,17 @@
   transform: translate(0%, 16.66%);
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
 }
-.card.front.triangle.hoa
-  .front-wrapper
-  .sectors-row
-  .sector
-  .pseudo-image.sector-overlay.pipes {
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.pipes {
   transform-origin: 50% 66%;
   z-index: 5;
 }
-.card.front.triangle.hoa
-  .front-wrapper
-  .sectors-row
-  .sector
-  .pseudo-image.sector-overlay.orientation-0.pipes {
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-0.pipes {
   rotate: 0deg;
 }
-.card.front.triangle.hoa
-  .front-wrapper
-  .sectors-row
-  .sector
-  .pseudo-image.sector-overlay.orientation-1.pipes {
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-1.pipes {
   rotate: 120deg;
 }
-.card.front.triangle.hoa
-  .front-wrapper
-  .sectors-row
-  .sector
-  .pseudo-image.sector-overlay.orientation-2.pipes {
+.card.front.triangle.hoa .front-wrapper .sectors-row .sector .pseudo-image.sector-overlay.orientation-2.pipes {
   rotate: 240deg;
 }
 .card.front.triangle.hoa .front-wrapper .sectors-row .sector.grass {
@@ -79,17 +67,20 @@
 }
 
 .card.back.hoa.triangle {
+  position: relative;
+}
+.card.back.hoa.triangle .back-wrapper {
   background-image: url("../images/Cards/backs/hoaBackBackground.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
-.card.back.hoa.triangle.start {
+.card.back.hoa.triangle.start .back-wrapper {
   background-image: url("../images/Cards/backs/hoaBackBackgroundStart.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 /*# sourceMappingURL=hoa_cards.css.map */

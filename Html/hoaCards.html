@@ -65,17 +65,10 @@
       ) {
         var debugLog = debugLogModule.debugLog;
 
-        // FIXME(dbanks) does not work, change all scaling and position to be percents.
-        /*
-              var width = genericMeasurements.standardCardWidthPx * 1.5;
-              var height = genericMeasurements.triangleCardHeightPx * 1.5;
-              var sc = systemConfigs.getCardSystemConfigs({
-                cardWidthPx: width,
-                cardHeightPx: height,
-              });
-      */
+        var cardHeightPx = genericMeasurements.triangleCardTTSActualHeightPx;
+
         var sc = systemConfigs.getCardSystemConfigs({
-          cardHeightPx: genericMeasurements.triangleCardHeightPx,
+          cardHeightPx: cardHeightPx,
         });
 
         systemConfigs.setSystemConfigs(sc);

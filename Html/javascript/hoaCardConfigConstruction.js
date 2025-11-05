@@ -1,3 +1,5 @@
+// 207.846pxs
+
 /*
 Tightly bound with hoaDeckConfigConstruction.js
 
@@ -305,6 +307,8 @@ define([
     cardConfig.sectorDescriptors = generateSectorDescriptorsForTerrainsBySector(
       terrainTypeBySectorIndex
     );
+
+    cardConfig.overlayClass = "hoa-overlay";
 
     console.assert(
       cardConfig.sectorDescriptors.length ==

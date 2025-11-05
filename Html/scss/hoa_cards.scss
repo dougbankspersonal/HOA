@@ -1,5 +1,4 @@
 .card.front.triangle.hoa {
-  background-image: url("../images/Cards/triangle-tile-empty.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -9,11 +8,21 @@
   .card-index {
     position: absolute;
     font-size: 20px;
-    bottom: 5px;
     left: 20px;
     display: inline-block;
     color: black;
-    z-index: 100;
+    z-index: 30;
+  }
+
+  .hoa-overlay.overlay {
+    background-image: url("../images/Cards/triangle-frame.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
   }
 
   .front-wrapper {
@@ -75,15 +84,21 @@
 }
 
 .card.back.hoa.triangle {
-  background-image: url("../images/Cards/backs/hoaBackBackground.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  position: relative;
+
+  .back-wrapper {
+    background-image: url("../images/Cards/backs/hoaBackBackground.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
 }
 
 .card.back.hoa.triangle.start {
-  background-image: url("../images/Cards/backs/hoaBackBackgroundStart.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  .back-wrapper {
+    background-image: url("../images/Cards/backs/hoaBackBackgroundStart.png");
+  }
 }
