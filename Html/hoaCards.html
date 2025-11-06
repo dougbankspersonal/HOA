@@ -85,7 +85,13 @@
 
         var backConfig = {
           callback: function (parentNode, index) {
-            return triangleCards.addCardBack(parentNode, cardConfigs, index);
+            var cardBack = triangleCards.addCardBack(
+              parentNode,
+              cardConfigs,
+              index
+            );
+
+            htmlUtils.addDiv(cardBack, ["start-text"], "Starter");
           },
           classes: ["hoa"],
         };
