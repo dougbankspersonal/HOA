@@ -52,7 +52,7 @@ define([
       ],
     },
     {
-      title: "Pool Rules",
+      title: "Building Rules",
       options: [
         {
           subtitle: "A: Fire Code!",
